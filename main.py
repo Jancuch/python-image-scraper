@@ -12,7 +12,7 @@ number = 0
 
 for image in images:
     number += 1
-    bnumber =  "{0}.png".format(number)
+    bnumber =  "./data/images/{0}.png".format(number)
     download = image['src']
     urllib.request.urlretrieve(download, str(bnumber))
     
