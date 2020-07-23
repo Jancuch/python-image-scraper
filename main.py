@@ -2,6 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request
 import os
+from datetime import date
+
+today = date.today()
+now =   today.strftime("%d.%m.%Y")
+now = str(now)
+try:
+    now = "./data/images/" + now
+    os.mkdir(now)
+    print("Directory " , now ,  " Created ") 
+except FileExistsError:
+    print("Directory " , now ,  " already exists")
 
 req = requests
 def scrape(link):
@@ -12,7 +23,7 @@ def scrape(link):
 
     for image in images:
         number += 1
-        bnumber =  "./data/images/{0}.png".format(number)
+        bnumber =  "{0}/{1}.png".format(now ,number)
         download = image['src']
         urllib.request.urlretrieve(download, str(bnumber))
         
